@@ -93,8 +93,14 @@ while running:
 
     # Création d'un ennemi à intervalles réguliers
     if random.randint(0, 100) < 2:
-        ennemi = Ennemi(random.randint(0, largeur - 64), -64, ennemi_img, random.randint(1, 3))
-        ennemis.append(ennemi)
+        if random.randint(0, 1) < 1:
+            ennemi = Ennemi(random.randint(0, largeur - 64), -64, vaisseau_img, 1)
+            ennemis.append(ennemi)
+        else:
+            ennemi_rapide = Ennemi(random.randint(0, largeur - 64), -64, ennemi_img, 1)
+            ennemi_rapide.vit *= 2
+            ennemis.append(ennemi_rapide)
+
 
     # Difficulté en fonction du score
     for ennemi in ennemis:
