@@ -1,3 +1,5 @@
+import pygame
+
 # Chargement des images
 vaisseau_img = pygame.image.load("piou.jpg")
 tir_img = pygame.image.load("sphere.png")
@@ -6,33 +8,43 @@ tir_img = pygame.image.load("sphere.png")
 vaisseau_img = pygame.transform.scale(vaisseau_img, (64, 64))
 tir_img = pygame.transform.scale(tir_img, (32, 32))
 
-# Position initiale du vaisseau
-vaisseau_x = largeur // 2 - 32
-vaisseau_y = hauteur - 100
+class Vaisseau:
+    def __init__(self, largeur, hauteur):
+        self.image = vaisseau_img
+        self.x = largeur // 2 - 32
+        self.y = hauteur - 100
 
-# Gestion des tirs
-tirs = []
-tir_vitesse = 5
+    def deplacer(self, touches):
+        if touches[pygame.K_LEFT] and self.x > 0:
+            self.x -= 5
+        if touches[pygame.K_RIGHT] and self.x < largeur - 64:
+            self.x += 5
 
-def tirer(x, y):
-    tir = {
-        "x": x,
-        "y": y,
-        "vit": tir_vitesse
-    }
-    tirs.append(tir)
-    
-    # Déplacement du vaisseau avec les touches directionnelles
-    touches = pygame.key.get_pressed()
-    if touches[pygame.K_LEFT] and vaisseau_x > 0:
-        vaisseau_x -= 5
-    if touches[pygame.K_RIGHT] and vaisseau_x < largeur - 64:
-        vaisseau_x += 5
+class Tir:
+    def __init__(self, x, y):
+        self.image = tir_img
+        self.x = x
+        self.y = y
+        self.vitesse = 5
 
-    # Mise à jour des tirs
-    for tir in tirs:
-        tir["y"] -= tir["vit"]
+    def deplacer(self):
+        self.y -= self.vitesse
 
-        # Suppression des tirs qui sont sortis de l'écran
-        if tir["y"] < 0:
-            tirs.remove(tir)
+class Jeu:
+    def __init__(self, largeur, hauteur):
+        self.vaisseau = Vaisseau(largeur, hauteur)
+        self.tirs = []
+
+    def tirer(self):
+        tir = Tir(self.vaisseau.x, self.vaisseau.y)
+        self.tirs.append(tir)
+
+    def mise_a_jour_tirs(self):
+        tirs_a_supprimer = []
+        for tir in self.tirs:
+            tir.deplacer()
+            if tir.y < 0:
+                tirs_a_supprimer.append(tir)
+
+        for tir in tirs_a_supprimer:
+            self.tirs.remove(tir)
