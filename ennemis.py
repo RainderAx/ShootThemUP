@@ -5,13 +5,6 @@ import random
 ennemi_img = pygame.image.load("vex.jpg")
 ennemi_img = pygame.transform.scale(ennemi_img, (64, 64))
 
-import pygame
-import random
-
-# Charger l'image de l'ennemi et la redimensionner
-ennemi_img = pygame.image.load("vex.jpg")
-ennemi_img = pygame.transform.scale(ennemi_img, (64, 64))
-
 class Ennemi:
     def __init__(self):
         self.x = random.randint(0, largeur - 64)
