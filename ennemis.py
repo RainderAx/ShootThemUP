@@ -57,6 +57,14 @@ ennemi = Ennemi()
 ennemis = []
 ennemis.append(sbire,ennemi)
 
+# Création d'un ennemi
+def creer_ennemi():
+    ennemis = {
+        "x": random.randint(0, largeur - 64),
+        "y": -64,
+    }
+    ennemis.append(ennemi,sbire)
+
 def mise_a_jour_ennemis(tirs, vaisseau_x, vaisseau_y, hauteur, score):
     for ennemi in ennemis:
         # Déplacer l'ennemi
