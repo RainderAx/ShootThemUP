@@ -124,9 +124,9 @@ while running:
         Diff = (score + 200)/100
         Diff2= Diff + 1
         ennemi["vit"] = random.randint(int(Diff), int(Diff2))
-    if Diff > 900:
-        if random.randint(0, 100) < 2:
-            creer_ennemi()
+        if Diff > 900:
+            if random.randint(0, 100) < 2:
+                creer_ennemi()
             
     # Dessin des éléments du jeu
     fenetre.fill(NOIR)
