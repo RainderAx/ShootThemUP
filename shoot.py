@@ -31,16 +31,16 @@ while running:
             running = False
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE:
-                tirer(vaisseau_x + 16, vaisseau_y)
+                Jeu.tirer(Jeu.tirer.vaisseau_x + 16, Jeu.tirer.vaisseau_y)
 
 
 
     # Dessin des éléments du jeu
     fenetre.fill(NOIR)
-    fenetre.blit(vaisseau_img, (vaisseau_x, vaisseau_y))
+    fenetre.blit(vaisseau_img, (Jeu.tirer.vaisseau_x, Jeu.tirer.vaisseau_y))
     for ennemi in ennemis:
         fenetre.blit(ennemi_img, (ennemi["x"], ennemi["y"]))
-    for tir in tirs:
+    for tir in Jeu.tirer.tirs:
         fenetre.blit(tir_img, (tir["x"], tir["y"]))
 
     #affichage du score 

@@ -14,7 +14,7 @@ class Vaisseau:
         self.x = largeur // 2 - 32
         self.y = hauteur - 100
 
-    def deplacer(self, touches):
+    def deplacer(self, touches, largeur):
         if touches[pygame.K_LEFT] and self.x > 0:
             self.x -= 5
         if touches[pygame.K_RIGHT] and self.x < largeur - 64:

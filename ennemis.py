@@ -13,8 +13,8 @@ ennemi_img = pygame.image.load("vex.jpg")
 ennemi_img = pygame.transform.scale(ennemi_img, (64, 64))
 
 class Ennemi:
-    def __init__(self):
-        self.x = random.randint(0, largeur - 64)
+    def __init__(self, score):
+        self.x = random.randint(0, 800 - 64)
         self.y = -64
         self.vit = random.randint(1, 3) + (score // 100)
 
@@ -41,7 +41,7 @@ class Ennemi:
         return False
 
 class Sbire(Ennemi):
-    def __init__(self):
+    def __init__(self, score):
         super().__init__()
         self.vit = random.randint(4, 6) + (score // 100)
         self.image = pygame.image.load("sbire.webp")
@@ -60,7 +60,7 @@ ennemis.append(sbire,ennemi)
 # Création d'un ennemi
 def creer_ennemi():
     ennemis = {
-        "x": random.randint(0, largeur - 64),
+        "x": random.randint(0, 800 - 64),
         "y": -64,
     }
     ennemis.append(ennemi,sbire)
