@@ -78,34 +78,7 @@ while running:
     if touches[pygame.K_RIGHT] and vaisseau_x < largeur - 64:
         vaisseau_x += 5
 
-    # Mise à jour des ennemis
-    for ennemi in ennemis:
-        ennemi["y"] += ennemi["vit"]
 
-        # Vérification des collisions entre les ennemis et les tirs
-        for tir in tirs:
-            if (
-                tir["x"] > ennemi["x"]
-                and tir["x"] < ennemi["x"] + 64
-                and tir["y"] > ennemi["y"]
-                and tir["y"] < ennemi["y"] + 64
-            ):
-                ennemis.remove(ennemi)
-                tirs.remove(tir)
-                score +=10
-
-        # Vérification des collisions entre les ennemis et le vaisseau
-        if (
-            vaisseau_x + 64 > ennemi["x"]
-            and vaisseau_x < ennemi["x"] + 64
-            and vaisseau_y + 64 > ennemi["y"]
-            and vaisseau_y < ennemi["y"] + 64
-        ):
-            running = False
-
-        # Suppression des ennemis qui sont sortis de l'écran
-        if ennemi["y"] > hauteur:
-            ennemis.remove(ennemi)
 
     # Mise à jour des tirs
     for tir in tirs:
@@ -119,14 +92,7 @@ while running:
     if random.randint(0, 100) < 2:
         creer_ennemi()
 
-    # Difficulté en fonction du score
-    for ennemi in ennemis:
-        Diff = (score + 200)/100
-        Diff2= Diff + 1
-        ennemi["vit"] = random.randint(int(Diff), int(Diff2))
-        if Diff > 900:
-            if random.randint(0, 100) < 2:
-                creer_ennemi()
+
             
     # Dessin des éléments du jeu
     fenetre.fill(NOIR)
