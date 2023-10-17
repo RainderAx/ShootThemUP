@@ -1,10 +1,10 @@
 import pygame
 import random
-import time
 from map import Map
 from vaisseau import Vaisseau
 from ennemi import Ennemi
 from tir import Tir
+
 
 # Initialisation de Pygame
 pygame.init()
@@ -16,7 +16,7 @@ hauteur = 600
 # Couleurs
 BLANC = (255, 255, 255)
 NOIR = (0, 0, 0)
-ROUGE = (255, 0, 0)
+
 
 # Création de la fenêtre de jeu
 fenetre = pygame.display.set_mode((largeur, hauteur))
@@ -62,6 +62,7 @@ while running:
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE:
                 Tir.tirer(vaisseau.x + 16, vaisseau.y, tirs, tir_vitesse, tir_img)
+                
 
     # Déplacement du vaisseau avec les touches directionnelles
     touches = pygame.key.get_pressed()

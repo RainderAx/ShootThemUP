@@ -1,4 +1,4 @@
-import pygame
+import asyncio
 
 class Tir:
     def __init__(self, x, y, vit, img):
@@ -12,6 +12,9 @@ class Tir:
 
     def afficher(self, fenetre):
         fenetre.blit(self.img, (self.x, self.y))
-    def tirer(x, y, tirs, tir_vitesse, tir_img):
+
+    async def tirer(self, x, y, tirs, tir_vitesse, tir_img):
         tir = Tir(x, y, tir_vitesse, tir_img)
         tirs.append(tir)
+        await asyncio.sleep(0.5)
+

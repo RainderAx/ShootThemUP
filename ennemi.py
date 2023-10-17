@@ -1,6 +1,3 @@
-import pygame
-import random
-
 class Ennemi:
     def __init__(self, x, y, img, vit):
         self.x = x
