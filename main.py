@@ -25,7 +25,7 @@ pygame.display.set_caption("Shoot Them Up")
 # Chargement des images
 vaisseau_img = pygame.image.load("piou.jpg")
 ennemi_img = pygame.image.load("vex.jpg")
-tir_img = pygame.image.load("sphere.png")
+tir_img = pygame.image.load("sphere.jpg")
 sbire_img = pygame.image.load("sbire.jpg")
 
 # Redimensionnement des images
