@@ -26,11 +26,14 @@ pygame.display.set_caption("Shoot Them Up")
 vaisseau_img = pygame.image.load("piou.jpg")
 ennemi_img = pygame.image.load("vex.jpg")
 tir_img = pygame.image.load("sphere.png")
+sbire_img = pygame.image.load("sbire.jpg")
 
 # Redimensionnement des images
-vaisseau_img = pygame.transform.scale(vaisseau_img, (64, 64))
+vaisseau_img = pygame.transform.scale(vaisseau_img, (50, 50))
 ennemi_img = pygame.transform.scale(ennemi_img, (64, 64))
 tir_img = pygame.transform.scale(tir_img, (32, 32))
+sbire_img = pygame.transform.scale(sbire_img, (48, 48))
+
 
 # Position initiale du vaisseau
 vaisseau = Vaisseau(largeur // 2 - 32, hauteur - 100, vaisseau_img)
@@ -92,25 +95,22 @@ while running:
             tirs.remove(tir)
 
     # Création d'un ennemi à intervalles réguliers
-    if random.randint(0, 100) < 2:
-        if random.randint(0, 1) < 1:
-            ennemi = Ennemi(random.randint(0, largeur - 64), -64, vaisseau_img, 1)
+    if random.randint(0, 100) < 1+(score/500):
+        vitesse = random.randint(2 , 3) + (score/200)
+        if vitesse > 7 :
+            vitesse = 7
+        ennemi = Ennemi(random.randint(0, largeur - 64), -64, ennemi_img, vitesse)
+        ennemis.append(ennemi)
+        if random.randint(0, 2) >=2: 
+            ennemi = Ennemi(random.randint(0, largeur - 64), -64, sbire_img, vitesse + 1)
             ennemis.append(ennemi)
-        else:
-            ennemi_rapide = Ennemi(random.randint(0, largeur - 64), -64, ennemi_img, 1)
-            ennemi_rapide.vit *= 2
-            ennemis.append(ennemi_rapide)
-
-
+            
+            
     # Difficulté en fonction du score
-    for ennemi in ennemis:
-        Diff = (score + 200)/100
-        Diff2= Diff + 1
-        ennemi.vit = random.randint(int(Diff), int(Diff2))
-        if Diff > 900:
-            if random.randint(0, 100) < 2:
-                ennemi = Ennemi(random.randint(0, largeur - 64), -64, ennemi_img, random.randint(1, 3))
-                ennemis.append(ennemi)
+    if score > 900:
+        if random.randint(0, 100) < 2:
+            ennemi = Ennemi(random.randint(0, largeur - 64), -64, ennemi_img, vitesse)
+            ennemis.append(ennemi)
 
     # Dessin des éléments du jeu
     carte.dessiner(fenetre)
